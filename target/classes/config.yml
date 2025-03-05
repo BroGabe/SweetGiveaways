@@ -1,0 +1,26 @@
+# SweetGiveaways coded by Brogabe on discord & GitHub
+
+messages:
+  giveaway-cancel: '&b&lGiveaways &fA giveaway has been canceled!'
+  already-active: '&b&lGiveaways &fA giveaway is already active!'
+  active-entry: '&b&lGiveaways &cYou already have an active entry!'
+  joined-giveaway: '&b&lGiveaways &fYou have joined the giveaway!'
+  click-char: 'Here'
+  giveaway-msg:
+    - ''
+    - '&b&lSERVER GIVEAWAY &8- &7(%entries% Entries)'
+    - ''
+    - '&fItem: &7%item%'
+    - '&fTime: &e%time% &fseconds left'
+    - ''
+    - '&7((Click&e %click% &7to enter the giveaway))'
+  giveaway-winner:
+    - ''
+    - '&bGIVEAWAY WINNER &8 - &e%player%'
+    - ''
+  no-winner:
+    - ''
+    - '&b&lGIVEAWAYS'
+    - ''
+    - '&bNo one won the giveaway in time!'
+    - ''

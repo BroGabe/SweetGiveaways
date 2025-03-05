@@ -1,0 +1,5 @@
+com\thedev\sweetgiveaways\module\GiveawayManager.class
+com\thedev\sweetgiveaways\commands\GiveawayCMD.class
+com\thedev\sweetgiveaways\SweetGiveaways.class
+com\thedev\sweetgiveaways\utils\ColorUtil.class
+com\thedev\sweetgiveaways\module\MessageManager.class
