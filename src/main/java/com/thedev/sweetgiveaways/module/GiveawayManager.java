@@ -18,20 +18,27 @@ import java.util.UUID;
 
 public class GiveawayManager {
 
+    // The main plugin instance that is instanciated through constructor
     private final SweetGiveaways plugin;
 
+    // The default config instance [config.yml]
     private final FileConfiguration config;
 
+    // Manages the clickable message broadcast.
     private final MessageManager messageManager;
 
+    // Tracks entries. Can be changed to a Set to disallow same user entries.
     private final List<UUID> entries = new ArrayList<>();
 
+    // Used to manage the time. This is changed to a new instance when a giveaway starts.
     private Instant timeManager = Instant.now();
 
     private boolean active = false;
 
+    // Stores the task instance for it can be canceled via /giveaway cancel.
     private BukkitTask giveawayTask = null;
 
+    // Stores the current giveaway item to reward when giveaway ends.
     private ItemStack giveawayItem = null;
 
     public GiveawayManager(SweetGiveaways plugin) {
@@ -40,6 +47,22 @@ public class GiveawayManager {
         config = plugin.getConfig();
 
         messageManager = new MessageManager(plugin);
+    }
+
+    public void addEntry(UUID uuid) {
+        entries.add(uuid);
+    }
+
+    public boolean hasEntry(UUID uuid) {
+        return entries.contains(uuid);
+    }
+
+    private void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public boolean getActive() {
+        return active;
     }
 
     public void startGiveaway(Player starter, int seconds) {
@@ -91,18 +114,6 @@ public class GiveawayManager {
         Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), Sound.NOTE_BASS, 10, 6));
     }
 
-    public void addEntry(UUID uuid) {
-        entries.add(uuid);
-    }
-
-    public boolean hasEntry(UUID uuid) {
-        return entries.contains(uuid);
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
     private void rewardRandomPlayer() {
         if(entries.isEmpty()) {
             config.getStringList("messages.no-winner").forEach(s -> Bukkit.broadcastMessage(ColorUtil.color(s)));
@@ -118,9 +129,5 @@ public class GiveawayManager {
         if(!Bukkit.getPlayer(uuid).isOnline()) return;
 
         Bukkit.getPlayer(uuid).getInventory().addItem(giveawayItem);
-    }
-
-    public boolean getActive() {
-        return active;
     }
 }
